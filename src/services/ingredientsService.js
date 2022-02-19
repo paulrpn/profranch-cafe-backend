@@ -13,7 +13,6 @@ const ERROR_MSG = {
 const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
   // validateNewName(name);
   // validateNewIngredients(ingredients);
-  // validateNewPreparation(preparation);
 
   const newIngredientId = await ingredientsModel
     .createIngredient(ingredientName, measureUnit, unitPrice);
