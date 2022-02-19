@@ -1,24 +1,37 @@
-// const { ObjectId } = require('mongodb');
-// const connect = require('./connection');
+const { ObjectId } = require('mongodb');
+const connect = require('./connectionDB');
 
-// const createIngredient = async (name) => {
-//   const conn = await connect();
+const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
+  const conn = await connect();
 
-//   const { insertedId } = await conn.collection('recipes').insertOne(
-//     {
-//       name,
-//       image: '',
-//       userId: _id,
-//     },
-//   );
+  const { insertedId } = await conn.collection('ingredients').insertOne(
+    {
+      ingredientName,
+      measureUnit,
+      unitPrice,
+      // userId: _id,
+    },
+  );
 
-//   return insertedId;
-// };
+  return insertedId;
+};
+
+const getAllIngredients = async () => {
+  const conn = await connect();
+  const query = await conn.collection('ingredients').find({}).toArray();
+  return query;
+};
+
+const getIngredientById = async (id) => {
+  const conn = await connect();
+  const query = await conn.collection('ingredients').findOne({ _id: ObjectId(id) });
+  return query;
+};
 
 module.exports = {
-  // createIngredient,
-  // getAllIngredients,
-  // getIngredientById,
+  createIngredient,
+  getAllIngredients,
+  getIngredientById,
   // updateIngredient,
   // deleteIngredient,
 };

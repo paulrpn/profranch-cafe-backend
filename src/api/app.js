@@ -10,8 +10,8 @@ const {
   createIngredient,
   getAllIngredients,
   getIngredientById,
-  updateIngredient,
-  deleteIngredient,
+  // updateIngredient,
+  // deleteIngredient,
 } = require('../controllers/ingredientsController');
 
 const app = express();
@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/ingredients', /* validateJWT, */ createIngredient);
 app.get('/ingredients', getAllIngredients);
 app.get('/ingredients/:id', getIngredientById);
-app.put('/ingredients/:id', /* validateJWT, */ updateIngredient);
-app.delete('/ingredients/:id', /* validateJWT, */ deleteIngredient);
+// app.put('/ingredients/:id', /* validateJWT, */ updateIngredient);
+// app.delete('/ingredients/:id', /* validateJWT, */ deleteIngredient);
 
 // app.post('/components', /* validateJWT, */ createComponent);
 // app.get('/components', getAllComponents);
