@@ -1,3 +1,3 @@
 # ProFranch Café Backend
 
-Sistema de backend para da empresa ProFranch Café
+Sistema de backend da empresa ProFranch Café
