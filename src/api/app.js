@@ -14,8 +14,9 @@ const {
 const {
   createIngredient,
   getAllIngredients,
+  getIngredientByName,
   getIngredientById,
-  // updateIngredient,
+  updateIngredient,
   // deleteIngredient,
 } = require('../controllers/ingredientsController');
 
@@ -31,9 +32,10 @@ app.post('/users/login', loginUser);
 
 app.post('/ingredients', validateJWT, createIngredient);
 app.get('/ingredients', validateJWT, getAllIngredients);
+app.get('/ingredients/search', validateJWT, getIngredientByName);
 app.get('/ingredients/:id', validateJWT, getIngredientById);
-// app.put('/ingredients/:id', /* validateJWT, */ updateIngredient);
-// app.delete('/ingredients/:id', /* validateJWT, */ deleteIngredient);
+app.put('/ingredients/:id', validateJWT, updateIngredient);
+// app.delete('/ingredients/:id', validateJWT, deleteIngredient);
 
 // app.post('/components', /* validateJWT, */ createComponent);
 // app.get('/components', getAllComponents);

@@ -48,6 +48,11 @@ const ERROR_MSG_10 = {
   message: 'Escolha entre as opções válidas: litro, kilo ou unidade.',
 };
 
+const ERROR_MSG_11 = {
+  status: 401,
+  message: 'Nenhum ingrediente encontrado para palavra-chave inserida.',
+};
+
 module.exports = {
   ERROR_MSG_1,
   ERROR_MSG_2,
@@ -59,4 +64,5 @@ module.exports = {
   ERROR_MSG_8,
   ERROR_MSG_9,
   ERROR_MSG_10,
+  ERROR_MSG_11,
 };
