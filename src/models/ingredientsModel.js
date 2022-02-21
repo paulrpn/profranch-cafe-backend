@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const connect = require('./connectionDB');
 
-const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
+const createIngredient = async (ingredientName, measureUnit, unitPrice, _id, addDate) => {
   const conn = await connect();
 
   const { insertedId } = await conn.collection('ingredients').insertOne(
@@ -9,7 +9,8 @@ const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
       ingredientName,
       measureUnit,
       unitPrice,
-      // userId: _id,
+      createdBy: _id,
+      createdTime: addDate,
     },
   );
 

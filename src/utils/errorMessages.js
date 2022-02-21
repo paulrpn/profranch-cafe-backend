@@ -38,6 +38,16 @@ const ERROR_MSG_8 = {
   message: 'O password deve conter de 6 à 12 caracteres! Tente novamente.',
 };
 
+const ERROR_MSG_9 = {
+  status: 403,
+  message: 'Acesso negado!',
+};
+
+const ERROR_MSG_10 = {
+  status: 401,
+  message: 'Escolha entre as opções válidas: litro, kilo ou unidade.',
+};
+
 module.exports = {
   ERROR_MSG_1,
   ERROR_MSG_2,
@@ -47,4 +57,6 @@ module.exports = {
   ERROR_MSG_6,
   ERROR_MSG_7,
   ERROR_MSG_8,
+  ERROR_MSG_9,
+  ERROR_MSG_10,
 };

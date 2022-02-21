@@ -8,7 +8,7 @@ const {
   validateNewPassword,
   validateEmail,
   validatePassword,
-} = require('./validateData');
+} = require('./validateUserData');
 
 const createUser = async (userName, userEmail, userPassword) => {
   validateNewName(userName);

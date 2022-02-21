@@ -1,23 +1,34 @@
 const { ObjectId } = require('mongodb');
 const ingredientsModel = require('../models/ingredientsModel');
-const { ERROR_MSG_1 } = require('../utils/errorMessages');
+const { ERROR_MSG_1, ERROR_MSG_9 } = require('../utils/errorMessages');
 
-// const {
-//   validateData,
-// } = require('../utils/validateData');
+const {
+  validateNewName,
+  validateNewMeasureUnit,
+  validateNewUnitPrice,
+} = require('./validateIngredientData');
 
-const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
-  // validateNewName(name);
-  // validateNewIngredients(ingredients);
+const createIngredient = async (bodyData, userData) => {
+  const { ingredientName, measureUnit, unitPrice } = bodyData;
+  const { _id, userName, userRole } = userData;
+  const addDate = new Date();
+
+  validateNewName(ingredientName);
+  validateNewMeasureUnit(measureUnit);
+  validateNewUnitPrice(unitPrice);
+
+  if (userRole === 'user') throw ERROR_MSG_9;
 
   const newIngredientId = await ingredientsModel
-    .createIngredient(ingredientName, measureUnit, unitPrice);
+    .createIngredient(ingredientName, measureUnit, unitPrice, _id, addDate);
 
   return {
-    _id: newIngredientId,
+    'ID do ingrediente': newIngredientId,
     'Nome do ingrediente': ingredientName,
     'Unidade de medida': measureUnit,
     'Preço unitário': unitPrice,
+    'Cadastrado por:': userName,
+    'Criado em:': addDate,
   };
 };
 

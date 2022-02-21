@@ -30,8 +30,8 @@ app.post('/users', createUser);
 app.post('/users/login', loginUser);
 
 app.post('/ingredients', validateJWT, createIngredient);
-app.get('/ingredients', getAllIngredients);
-app.get('/ingredients/:id', getIngredientById);
+app.get('/ingredients', validateJWT, getAllIngredients);
+app.get('/ingredients/:id', validateJWT, getIngredientById);
 // app.put('/ingredients/:id', /* validateJWT, */ updateIngredient);
 // app.delete('/ingredients/:id', /* validateJWT, */ deleteIngredient);
 
