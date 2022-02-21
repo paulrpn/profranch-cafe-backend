@@ -7,6 +7,11 @@ const errorHandler = require('../middlewares/errorHandler');
 // const storage = require('../middlewares/multerStorage');
 
 const {
+  createUser,
+  loginUser,
+} = require('../controllers/usersController');
+
+const {
   createIngredient,
   getAllIngredients,
   getIngredientById,
@@ -20,6 +25,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
+
+app.post('/users', createUser);
+app.post('/users/login', loginUser);
 
 app.post('/ingredients', /* validateJWT, */ createIngredient);
 app.get('/ingredients', getAllIngredients);
@@ -40,8 +48,6 @@ app.get('/ingredients/:id', getIngredientById);
 // app.put('/products/:id', /* validateJWT, */ updateProduct);
 // app.delete('/products/:id', /* validateJWT, */ deleteProduct);
 // app.put('/products/:id/image', /* validateJWT, */ upload.single('image'), updateProductImage);
-
-// app.post('/login', loginUser);
 
 app.use(errorHandler);
 

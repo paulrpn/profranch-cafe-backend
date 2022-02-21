@@ -15,9 +15,9 @@ const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
 
   return {
     _id: newIngredientId,
-    ingredientName,
-    measureUnit,
-    unitPrice,
+    'Nome do ingrediente': ingredientName,
+    'Unidade de medida': measureUnit,
+    'Preço unitário': unitPrice,
     // userId: _id,
   };
 };
