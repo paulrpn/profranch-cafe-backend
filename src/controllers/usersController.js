@@ -16,7 +16,7 @@ const loginUser = async (req, res, next) => {
     const { userEmail, userPassword } = req.body;
     const newToken = await usersService.loginUser(userEmail, userPassword);
 
-    return res.status(200).json({ 'Token gerado com sucesso': newToken });
+    return res.status(200).json({ 'Acesso Autorizado - WebToken': newToken });
   } catch (error) {
     return next(error);
   }

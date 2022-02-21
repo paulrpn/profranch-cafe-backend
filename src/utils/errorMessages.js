@@ -10,17 +10,22 @@ const ERROR_MSG_2 = {
 
 const ERROR_MSG_3 = {
   status: 401,
-  message: 'Username ou password incorreto!',
+  message: 'Email ou password incorreto!',
 };
 
 const ERROR_MSG_4 = {
   status: 401,
-  message: 'Token de acesso não informado',
+  message: 'Token de acesso não informado!',
 };
 
 const ERROR_MSG_5 = {
   status: 401,
-  message: 'Token de acesso inválido',
+  message: 'Token de acesso inválido!',
+};
+
+const ERROR_MSG_6 = {
+  status: 401,
+  message: 'Todos os campos devem ser informados corretamente!',
 };
 
 module.exports = {
@@ -29,4 +34,5 @@ module.exports = {
   ERROR_MSG_3,
   ERROR_MSG_4,
   ERROR_MSG_5,
+  ERROR_MSG_6,
 };

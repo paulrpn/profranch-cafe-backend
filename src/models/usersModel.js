@@ -1,4 +1,4 @@
-const connect = require('../middlewares/connectionDB');
+const connect = require('./connectionDB');
 
 const getUserByEmail = async (userEmail) => {
   const conn = await connect();
@@ -14,7 +14,7 @@ const createUser = async (userName, userEmail, userPassword) => {
       userName,
       userEmail,
       userPassword,
-      role: 'user',
+      userRole: 'user',
     },
   );
 

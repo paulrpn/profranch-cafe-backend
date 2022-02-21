@@ -1,14 +1,11 @@
 const usersModel = require('../models/usersModel');
-const { generateToken } = require('../middlewares/validateJWT');
+const { generateToken } = require('./authService');
 const { ERROR_MSG_2, ERROR_MSG_3 } = require('../utils/errorMessages');
 
-// const {
-//   validateNewName,
-//   validateNewEmail,
-//   validateNewPassword,
-//   validateEmail,
-//   validatePassword,
-// } = require('../utils/validateData');
+const {
+  validateEmail,
+  validatePassword,
+} = require('./validateData');
 
 const createUser = async (userName, userEmail, userPassword) => {
   // validateNewName(userName);
@@ -28,8 +25,8 @@ const createUser = async (userName, userEmail, userPassword) => {
 };
 
 const loginUser = async (userEmail, userPassword) => {
-  // validateEmail(email);
-  // validatePassword(password);
+  validateEmail(userEmail);
+  validatePassword(userPassword);
 
   const userFound = await usersModel.getUserByEmail(userEmail);
   if (!userFound || userFound.userPassword !== userPassword) throw ERROR_MSG_3;
