@@ -48,7 +48,19 @@ const updateIngredient = async (req, res, next) => {
 
     const updatedIngredient = await ingredientsService.updateIngredient(id, userData, bodyData);
 
-    return res.status(200).json(updatedIngredient);
+    return res.status(201).json({ 'Ingrediente atualizado com sucesso': updatedIngredient });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const deleteIngredient = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { userRole } = req.user;
+    await ingredientsService.deleteIngredient(id, userRole);
+
+    return res.status(200).send('Ingrediente excluído com sucesso!');
   } catch (error) {
     return next(error);
   }
@@ -60,5 +72,5 @@ module.exports = {
   getIngredientByName,
   getIngredientById,
   updateIngredient,
-  // deleteIngredient,
+  deleteIngredient,
 };

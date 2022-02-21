@@ -53,6 +53,11 @@ const ERROR_MSG_11 = {
   message: 'Nenhum ingrediente encontrado para palavra-chave inserida.',
 };
 
+const ERROR_MSG_12 = {
+  status: 400,
+  message: 'Nenhum item atualizado/excluído.',
+};
+
 module.exports = {
   ERROR_MSG_1,
   ERROR_MSG_2,
@@ -65,4 +70,5 @@ module.exports = {
   ERROR_MSG_9,
   ERROR_MSG_10,
   ERROR_MSG_11,
+  ERROR_MSG_12,
 };

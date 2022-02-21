@@ -17,7 +17,7 @@ const {
   getIngredientByName,
   getIngredientById,
   updateIngredient,
-  // deleteIngredient,
+  deleteIngredient,
 } = require('../controllers/ingredientsController');
 
 const app = express();
@@ -35,7 +35,7 @@ app.get('/ingredients', validateJWT, getAllIngredients);
 app.get('/ingredients/search', validateJWT, getIngredientByName);
 app.get('/ingredients/:id', validateJWT, getIngredientById);
 app.put('/ingredients/:id', validateJWT, updateIngredient);
-// app.delete('/ingredients/:id', validateJWT, deleteIngredient);
+app.delete('/ingredients/:id', validateJWT, deleteIngredient);
 
 // app.post('/components', /* validateJWT, */ createComponent);
 // app.get('/components', getAllComponents);

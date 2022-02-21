@@ -24,8 +24,16 @@ const validateNewUnitPrice = (unitPrice) => {
   return true;
 };
 
+const validateNewQuantity = (quantity) => {
+  if (!quantity || typeof (quantity) !== 'number') {
+    throw ERROR_MSG_6;
+  }
+  return true;
+};
+
 module.exports = {
   validateNewName,
   validateNewMeasureUnit,
   validateNewUnitPrice,
+  validateNewQuantity,
 };

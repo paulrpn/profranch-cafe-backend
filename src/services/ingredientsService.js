@@ -5,33 +5,39 @@ const {
   ERROR_MSG_1,
   ERROR_MSG_9,
   ERROR_MSG_11,
+  ERROR_MSG_12,
 } = require('../utils/errorMessages');
 
 const {
   validateNewName,
   validateNewMeasureUnit,
   validateNewUnitPrice,
+  validateNewQuantity,
 } = require('./validateIngredientData');
 
 const createIngredient = async (bodyData, userData) => {
-  const { ingredientName, measureUnit, unitPrice } = bodyData;
+  const {
+    ingredientName, measureUnit, unitPrice, quantity,
+  } = bodyData;
   const { _id, userName, userRole } = userData;
   const timeStamp = new Date();
 
   validateNewName(ingredientName);
   validateNewMeasureUnit(measureUnit);
   validateNewUnitPrice(unitPrice);
+  validateNewQuantity(quantity);
 
   if (userRole === 'user') throw ERROR_MSG_9;
 
   const newIngredientId = await ingredientsModel
-    .createIngredient(ingredientName, measureUnit, unitPrice, _id, timeStamp);
+    .createIngredient(ingredientName, measureUnit, unitPrice, quantity, _id, timeStamp);
 
   return {
     'ID do ingrediente': newIngredientId,
     'Nome do ingrediente': ingredientName,
     'Unidade de medida': measureUnit,
     'Preço unitário': unitPrice,
+    'Qtde do ingrediente': quantity,
     'Cadastrado por:': userName,
     'Criado em:': timeStamp,
   };
@@ -57,28 +63,41 @@ const getIngredientById = async (id) => {
 
 const updateIngredient = async (id, userData, bodyData) => {
   if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
-  const { ingredientName, measureUnit, unitPrice } = bodyData;
+  const {
+    ingredientName, measureUnit, unitPrice, quantity,
+  } = bodyData;
   const { _id, userName, userRole } = userData;
   const timeStamp = new Date();
 
   validateNewName(ingredientName);
   validateNewMeasureUnit(measureUnit);
   validateNewUnitPrice(unitPrice);
+  validateNewQuantity(quantity);
 
   if (userRole === 'user') throw ERROR_MSG_9;
 
-  await ingredientsModel.updateIngredient(id, _id, bodyData, timeStamp);
+  const updateStatus = await ingredientsModel.updateIngredient(id, _id, bodyData, timeStamp);
 
-  // if (updateStatus === 0) throw ERROR_MSG_7;
+  if (updateStatus === 0) throw ERROR_MSG_12;
 
   return {
     'ID do ingrediente': id,
     'Nome do ingrediente': ingredientName,
     'Unidade de medida': measureUnit,
     'Preço unitário': unitPrice,
+    'Qtde do ingrediente': quantity,
     'Atualizado por:': userName,
     'Atualizado em:': timeStamp,
   };
+};
+
+const deleteIngredient = async (id, userRole) => {
+  if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
+  if (userRole === 'user') throw ERROR_MSG_9;
+
+  const deleteStatus = await ingredientsModel.deleteIngredient(id);
+  if (deleteStatus === 0) throw ERROR_MSG_12;
+  return null;
 };
 
 module.exports = {
@@ -87,5 +106,5 @@ module.exports = {
   getIngredientByName,
   getIngredientById,
   updateIngredient,
-  // deleteIngredient,
+  deleteIngredient,
 };
