@@ -25,7 +25,17 @@ const ERROR_MSG_5 = {
 
 const ERROR_MSG_6 = {
   status: 401,
-  message: 'Todos os campos devem ser informados corretamente!',
+  message: 'Todos os campos devem ser informados corretamente! Tente novamente.',
+};
+
+const ERROR_MSG_7 = {
+  status: 401,
+  message: 'O formato do email é inválido! Tente novamente.',
+};
+
+const ERROR_MSG_8 = {
+  status: 401,
+  message: 'O password deve conter de 6 à 12 caracteres! Tente novamente.',
 };
 
 module.exports = {
@@ -35,4 +45,6 @@ module.exports = {
   ERROR_MSG_4,
   ERROR_MSG_5,
   ERROR_MSG_6,
+  ERROR_MSG_7,
+  ERROR_MSG_8,
 };
