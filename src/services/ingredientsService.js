@@ -18,7 +18,6 @@ const createIngredient = async (ingredientName, measureUnit, unitPrice) => {
     'Nome do ingrediente': ingredientName,
     'Unidade de medida': measureUnit,
     'Preço unitário': unitPrice,
-    // userId: _id,
   };
 };
 

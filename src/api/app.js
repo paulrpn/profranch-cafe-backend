@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const errorHandler = require('../middlewares/errorHandler');
-// const validateJWT = require('../middlewares/validateJWT');
+const validateJWT = require('../middlewares/validateJWT');
 // const path = require('path');
 // const multer = require('multer');
 // const storage = require('../middlewares/multerStorage');
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/users', createUser);
 app.post('/users/login', loginUser);
 
-app.post('/ingredients', /* validateJWT, */ createIngredient);
+app.post('/ingredients', validateJWT, createIngredient);
 app.get('/ingredients', getAllIngredients);
 app.get('/ingredients/:id', getIngredientById);
 // app.put('/ingredients/:id', /* validateJWT, */ updateIngredient);

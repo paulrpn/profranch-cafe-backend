@@ -3,11 +3,10 @@ const ingredientsService = require('../services/ingredientsService');
 const createIngredient = async (req, res, next) => {
   try {
     const { ingredientName, measureUnit, unitPrice } = req.body;
-    // const { _id } = req.user;
     const newIngredient = await ingredientsService
       .createIngredient(ingredientName, measureUnit, unitPrice);
 
-    return res.status(201).json({ recipe: newIngredient });
+    return res.status(201).json({ Ingrediente: newIngredient });
   } catch (error) {
     return next(error);
   }
