@@ -118,6 +118,34 @@ const deleteProduct = async (id, userRole) => {
   return null;
 };
 
+const updateProductImage = async (id, filename, userData) => {
+  const { _id, userName, userRole } = userData;
+  const timeStamp = new Date();
+  const product = await productsModel.getProductById(id);
+  const {
+    productName, productIngredients, productCost, productPrice, productQuantity,
+  } = product;
+
+  const imageURL = `${'localhost:3333/src/uploads/'}${filename}`;
+
+  if (userRole === 'user') throw ERROR_MSG_9;
+  const updateStatus = await productsModel.updateProductImage(id, _id, imageURL, timeStamp);
+
+  if (updateStatus === 0) throw ERROR_MSG_12;
+
+  return {
+    'ID do produto': id,
+    'Nome do produto': productName,
+    'Imagem do produto': imageURL,
+    'Ingredientes do produto': productIngredients,
+    'Custo do produto': productCost,
+    'Preço do produto': productPrice,
+    'Qtde do produto': productQuantity,
+    'Atualizado por:': userName,
+    'Atualizado em:': timeStamp,
+  };
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
@@ -125,4 +153,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  updateProductImage,
 };

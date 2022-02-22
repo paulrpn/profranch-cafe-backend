@@ -4,6 +4,7 @@ const createProduct = async (req, res, next) => {
   try {
     const bodyData = req.body;
     const userData = req.user;
+
     const newProduct = await productsService
       .createProduct(bodyData, userData);
 
@@ -58,9 +59,24 @@ const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { userRole } = req.user;
+
     await productsService.deleteProduct(id, userRole);
 
     return res.status(200).send('Produto excluído com sucesso!');
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const updateProductImage = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { filename } = req.file;
+    const userData = req.user;
+
+    const updatedProduct = await productsService.updateProductImage(id, filename, userData);
+
+    return res.status(200).json({ 'Imagem inserida com sucesso no produto': updatedProduct });
   } catch (error) {
     return next(error);
   }
@@ -73,4 +89,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  updateProductImage,
 };

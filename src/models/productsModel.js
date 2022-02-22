@@ -81,6 +81,17 @@ const deleteProduct = async (id) => {
   return deletedCount;
 };
 
+const updateProductImage = async (id, _id, imageURL, timeStamp) => {
+  const conn = await connect();
+
+  const { modifiedCount } = await conn.collection('products')
+    .updateOne(
+      { _id: ObjectId(id) },
+      { $set: { productImage: imageURL, updatedBy: _id, updatedTime: timeStamp } },
+    );
+  return modifiedCount;
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
@@ -88,4 +99,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  updateProductImage,
 };
