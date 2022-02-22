@@ -20,6 +20,10 @@ const {
   deleteIngredient,
 } = require('../controllers/ingredientsController');
 
+const {
+  createProduct,
+} = require('../controllers/productsController');
+
 const app = express();
 // const upload = multer({ storage });
 
@@ -37,13 +41,7 @@ app.get('/ingredients/:id', validateJWT, getIngredientById);
 app.put('/ingredients/:id', validateJWT, updateIngredient);
 app.delete('/ingredients/:id', validateJWT, deleteIngredient);
 
-// app.post('/components', /* validateJWT, */ createComponent);
-// app.get('/components', getAllComponents);
-// app.get('/components/:id', getComponentById);
-// app.put('/components/:id', /* validateJWT, */ updateComponent);
-// app.delete('/components/:id', /* validateJWT, */ deleteComponent);
-
-// app.post('/products', /* validateJWT, */ createProduct);
+app.post('/products', validateJWT, createProduct);
 // app.get('/products', getAllProducts);
 // app.get('/products/:id', getProductById);
 // app.get('/products/checksale/:id', getProductById);

@@ -30,7 +30,7 @@ const createIngredient = async (bodyData, userData) => {
   if (userRole === 'user') throw ERROR_MSG_9;
 
   const newIngredientId = await ingredientsModel
-    .createIngredient(ingredientName, measureUnit, unitPrice, quantity, _id, timeStamp);
+    .createIngredient(bodyData, _id, timeStamp);
 
   return {
     'ID do ingrediente': newIngredientId,
