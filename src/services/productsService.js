@@ -50,10 +50,10 @@ const createProduct = async (bodyData, userData) => {
   };
 };
 
-// const getAllIngredients = async () => {
-//   const allIngredients = await productsModel.getAllIngredients();
-//   return allIngredients;
-// };
+const getAllProducts = async () => {
+  const allProducts = await productsModel.getAllProducts();
+  return allProducts;
+};
 
 // const getIngredientByName = async (name) => {
 //   const result = await productsModel.getIngredientByName(name);
@@ -109,9 +109,9 @@ const createProduct = async (bodyData, userData) => {
 
 module.exports = {
   createProduct,
-  // getAllIngredients,
-  // getIngredientByName,
-  // getIngredientById,
+  getAllProducts,
+  // getProductByName,
+  // getProductById,
   // updateIngredient,
   // deleteIngredient,
 };

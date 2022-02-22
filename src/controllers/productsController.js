@@ -13,10 +13,10 @@ const createProduct = async (req, res, next) => {
   }
 };
 
-// const getAllIngredients = async (_req, res) => {
-//   const allIngredients = await productsService.getAllIngredients();
-//   res.status(200).json(allIngredients);
-// };
+const getAllProducts = async (_req, res) => {
+  const allProducts = await productsService.getAllProducts();
+  res.status(200).json(allProducts);
+};
 
 // const getIngredientByName = async (req, res, next) => {
 //   try {
@@ -68,9 +68,9 @@ const createProduct = async (req, res, next) => {
 
 module.exports = {
   createProduct,
-  // getAllIngredients,
-  // getIngredientByName,
-  // getIngredientById,
+  getAllProducts,
+  // getProductByName,
+  // getProductById,
   // updateIngredient,
   // deleteIngredient,
 };

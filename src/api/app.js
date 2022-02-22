@@ -2,26 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const errorHandler = require('../middlewares/errorHandler');
 const validateJWT = require('../middlewares/validateJWT');
+const usersRouter = require('./usersRouter');
+const ingredientsRouter = require('./ingredientsRouter');
 // const path = require('path');
 // const multer = require('multer');
 // const storage = require('../middlewares/multerStorage');
 
 const {
-  createUser,
-  loginUser,
-} = require('../controllers/usersController');
-
-const {
-  createIngredient,
-  getAllIngredients,
-  getIngredientByName,
-  getIngredientById,
-  updateIngredient,
-  deleteIngredient,
-} = require('../controllers/ingredientsController');
-
-const {
   createProduct,
+  // getAllProducts,
+  // getProductByName,
+  // getProductById,
 } = require('../controllers/productsController');
 
 const app = express();
@@ -31,20 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
 
-app.post('/users', createUser);
-app.post('/users/login', loginUser);
-
-app.post('/ingredients', validateJWT, createIngredient);
-app.get('/ingredients', validateJWT, getAllIngredients);
-app.get('/ingredients/search', validateJWT, getIngredientByName);
-app.get('/ingredients/:id', validateJWT, getIngredientById);
-app.put('/ingredients/:id', validateJWT, updateIngredient);
-app.delete('/ingredients/:id', validateJWT, deleteIngredient);
+app.use('/users', usersRouter);
+app.use('/ingredients', ingredientsRouter);
 
 app.post('/products', validateJWT, createProduct);
-// app.get('/products', getAllProducts);
-// app.get('/products/:id', getProductById);
-// app.get('/products/checksale/:id', getProductById);
+// app.get('/products', validateJWT, getAllProducts);
+// app.get('/products/search', validateJWT, getProductByName);
+// app.get('/products/:id', validateJWT, getProductById);
 // app.put('/products/:id', /* validateJWT, */ updateProduct);
 // app.delete('/products/:id', /* validateJWT, */ deleteProduct);
 // app.put('/products/:id/image', /* validateJWT, */ upload.single('image'), updateProductImage);

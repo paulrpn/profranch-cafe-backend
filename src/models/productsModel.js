@@ -23,18 +23,18 @@ const createProduct = async (bodyData, productCost, productPrice, _id, timeStamp
   return insertedId;
 };
 
-// const getAllIngredients = async () => {
-//   const conn = await connect();
-//   const query = await conn.collection('ingredients')
-//     .find({})
-//     .sort({ ingredientName: 1 })
-//     .toArray();
-//   return query;
-// };
+const getAllProducts = async () => {
+  const conn = await connect();
+  const query = await conn.collection('products')
+    .find({})
+    .sort({ productName: 1 })
+    .toArray();
+  return query;
+};
 
 // const getIngredientByName = async (name) => {
 //   const conn = await connect();
-//   const query = await conn.collection('ingredients')
+//   const query = await conn.collection('products')
 //     .find({ ingredientName: { $regex: name } })
 //     .sort({ ingredientName: 1 })
 //     .toArray();
@@ -43,7 +43,7 @@ const createProduct = async (bodyData, productCost, productPrice, _id, timeStamp
 
 // const getIngredientById = async (id) => {
 //   const conn = await connect();
-//   const query = await conn.collection('ingredients').findOne({ _id: ObjectId(id) });
+//   const query = await conn.collection('products').findOne({ _id: ObjectId(id) });
 //   return query;
 // };
 
@@ -53,7 +53,7 @@ const createProduct = async (bodyData, productCost, productPrice, _id, timeStamp
 //     ingredientName, measureUnit, unitPrice, quantity,
 //   } = bodyData;
 
-//   const { modifiedCount } = await conn.collection('ingredients')
+//   const { modifiedCount } = await conn.collection('products')
 //     .updateOne(
 //       { _id: ObjectId(id) },
 //       {
@@ -69,16 +69,16 @@ const createProduct = async (bodyData, productCost, productPrice, _id, timeStamp
 // const deleteIngredient = async (id) => {
 //   const conn = await connect();
 
-//   const { deletedCount } = await conn.collection('ingredients')
+//   const { deletedCount } = await conn.collection('products')
 //     .deleteOne({ _id: ObjectId(id) });
 //   return deletedCount;
 // };
 
 module.exports = {
   createProduct,
-  // getAllIngredients,
-  // getIngredientByName,
-  // getIngredientById,
+  getAllProducts,
+  // getProductByName,
+  // getProductById,
   // updateIngredient,
   // deleteIngredient,
 };
