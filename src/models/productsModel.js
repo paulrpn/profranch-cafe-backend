@@ -47,38 +47,45 @@ const getProductById = async (id) => {
   return query;
 };
 
-// const updateIngredient = async (id, _id, bodyData, timeStamp) => {
-//   const conn = await connect();
-//   const {
-//     ingredientName, measureUnit, unitPrice, quantity,
-//   } = bodyData;
+const updateProduct = async (id, _id, bodyData, productCost, productPrice, timeStamp) => {
+  const conn = await connect();
+  const {
+    productName, productImage, productIngredients, productQuantity,
+  } = bodyData;
 
-//   const { modifiedCount } = await conn.collection('products')
-//     .updateOne(
-//       { _id: ObjectId(id) },
-//       {
-//         $set:
-//         {
-//           ingredientName, measureUnit, unitPrice, updatedBy: _id, updatedTime: timeStamp,
-//         },
-//       },
-//     );
-//   return modifiedCount;
-// };
+  const { modifiedCount } = await conn.collection('products').updateOne(
+    { _id: ObjectId(id) },
+    {
+      $set:
+        {
+          productName,
+          productImage,
+          productIngredients,
+          productCost,
+          productPrice,
+          productQuantity,
+          updatedBy: _id,
+          updatedTime: timeStamp,
+        },
+    },
+  );
 
-// const deleteIngredient = async (id) => {
-//   const conn = await connect();
+  return modifiedCount;
+};
 
-//   const { deletedCount } = await conn.collection('products')
-//     .deleteOne({ _id: ObjectId(id) });
-//   return deletedCount;
-// };
+const deleteProduct = async (id) => {
+  const conn = await connect();
+
+  const { deletedCount } = await conn.collection('products')
+    .deleteOne({ _id: ObjectId(id) });
+  return deletedCount;
+};
 
 module.exports = {
   createProduct,
   getAllProducts,
   getProductByName,
   getProductById,
-  // updateIngredient,
-  // deleteIngredient,
+  updateProduct,
+  deleteProduct,
 };

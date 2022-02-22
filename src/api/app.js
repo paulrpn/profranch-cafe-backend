@@ -13,6 +13,8 @@ const {
   getAllProducts,
   getProductByName,
   getProductById,
+  updateProduct,
+  deleteProduct,
 } = require('../controllers/productsController');
 
 const app = express();
@@ -29,8 +31,9 @@ app.post('/products', validateJWT, createProduct);
 app.get('/products', validateJWT, getAllProducts);
 app.get('/products/search', validateJWT, getProductByName);
 app.get('/products/:id', validateJWT, getProductById);
-// app.put('/products/:id', /* validateJWT, */ updateProduct);
-// app.delete('/products/:id', /* validateJWT, */ deleteProduct);
+app.put('/products/:id', validateJWT, updateProduct);
+app.delete('/products/:id', validateJWT, deleteProduct);
+
 // app.put('/products/:id/image', /* validateJWT, */ upload.single('image'), updateProductImage);
 
 app.use(errorHandler);

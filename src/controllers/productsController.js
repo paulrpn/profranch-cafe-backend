@@ -40,37 +40,37 @@ const getProductById = async (req, res, next) => {
   }
 };
 
-// const updateIngredient = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     const userData = req.user;
-//     const bodyData = req.body;
+const updateProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userData = req.user;
+    const bodyData = req.body;
 
-//     const updatedIngredient = await productsService.updateIngredient(id, userData, bodyData);
+    const updatedProduct = await productsService.updateProduct(id, userData, bodyData);
 
-//     return res.status(201).json({ 'Ingrediente atualizado com sucesso': updatedIngredient });
-//   } catch (error) {
-//     return next(error);
-//   }
-// };
+    return res.status(201).json({ 'Produto atualizado com sucesso': updatedProduct });
+  } catch (error) {
+    return next(error);
+  }
+};
 
-// const deleteIngredient = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     const { userRole } = req.user;
-//     await productsService.deleteIngredient(id, userRole);
+const deleteProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { userRole } = req.user;
+    await productsService.deleteProduct(id, userRole);
 
-//     return res.status(200).send('Ingrediente excluído com sucesso!');
-//   } catch (error) {
-//     return next(error);
-//   }
-// };
+    return res.status(200).send('Produto excluído com sucesso!');
+  } catch (error) {
+    return next(error);
+  }
+};
 
 module.exports = {
   createProduct,
   getAllProducts,
   getProductByName,
   getProductById,
-  // updateIngredient,
-  // deleteIngredient,
+  updateProduct,
+  deleteProduct,
 };

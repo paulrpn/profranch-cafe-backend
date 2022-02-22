@@ -28,9 +28,41 @@ const validateNewQuantity = (productQuantity) => {
   return true;
 };
 
+const validateUpdateName = (productName) => {
+  if (!productName || typeof (productName) !== 'string') {
+    throw ERROR_MSG_6;
+  }
+  return true;
+};
+
+// const validateUpdateImage = (productImage) => {
+//   if (!productImage ||typeof (productImage) !== 'string') {
+//     throw ERROR_MSG_6;
+//   }
+//   return true;
+// };
+
+const validateUpdateIngredients = (productIngredients) => {
+  if (!productIngredients || typeof (productIngredients) !== 'object') {
+    throw ERROR_MSG_6;
+  }
+  return true;
+};
+
+const validateUpdateQuantity = (productQuantity) => {
+  if (!productQuantity || typeof (productQuantity) !== 'number') {
+    throw ERROR_MSG_6;
+  }
+  return true;
+};
+
 module.exports = {
   validateNewName,
   // validateNewImage,
   validateNewIngredients,
   validateNewQuantity,
+  validateUpdateName,
+  // validateUpdateImage,
+  validateUpdateIngredients,
+  validateUpdateQuantity,
 };

@@ -6,7 +6,7 @@ const {
   ERROR_MSG_1,
   ERROR_MSG_9,
   ERROR_MSG_11,
-  // ERROR_MSG_12,
+  ERROR_MSG_12,
 } = require('../utils/errorMessages');
 
 const {
@@ -14,6 +14,10 @@ const {
   // validateNewImage,
   validateNewIngredients,
   validateNewQuantity,
+  validateUpdateName,
+  // validateUpdateImage,
+  validateUpdateIngredients,
+  validateUpdateQuantity,
 } = require('./validateProductData');
 
 const createProduct = async (bodyData, userData) => {
@@ -68,50 +72,57 @@ const getProductById = async (id) => {
   return product;
 };
 
-// const updateIngredient = async (id, userData, bodyData) => {
-//   if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
-//   const {
-//     ingredientName, measureUnit, unitPrice, quantity,
-//   } = bodyData;
-//   const { _id, userName, userRole } = userData;
-//   const timeStamp = new Date();
+const updateProduct = async (id, userData, bodyData) => {
+  if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
+  const {
+    productName, productImage, productIngredients, productQuantity,
+  } = bodyData;
+  const { _id, userName, userRole } = userData;
+  const timeStamp = new Date();
 
-//   validateNewName(ingredientName);
-//   validateNewMeasureUnit(measureUnit);
-//   validateNewUnitPrice(unitPrice);
-//   validateNewQuantity(quantity);
+  validateUpdateName(productName);
+  // validateUpdateImage(productImage);
+  validateUpdateIngredients(productIngredients);
+  validateUpdateQuantity(productQuantity);
 
-//   if (userRole === 'user') throw ERROR_MSG_9;
+  if (userRole === 'user') throw ERROR_MSG_9;
 
-//   const updateStatus = await productsModel.updateIngredient(id, _id, bodyData, timeStamp);
+  const productCost = await ingredientsModel
+    .consumeIngredients(productIngredients, productQuantity, _id, timeStamp);
+  const productPrice = parseFloat((productCost + (productCost * 0.40)).toFixed(2), 10);
 
-//   if (updateStatus === 0) throw ERROR_MSG_12;
+  const updateStatus = await productsModel
+    .updateProduct(id, _id, bodyData, productCost, productPrice, timeStamp);
 
-//   return {
-//     'ID do ingrediente': id,
-//     'Nome do ingrediente': ingredientName,
-//     'Unidade de medida': measureUnit,
-//     'Preço unitário': unitPrice,
-//     'Qtde do ingrediente': quantity,
-//     'Atualizado por:': userName,
-//     'Atualizado em:': timeStamp,
-//   };
-// };
+  if (updateStatus === 0) throw ERROR_MSG_12;
 
-// const deleteIngredient = async (id, userRole) => {
-//   if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
-//   if (userRole === 'user') throw ERROR_MSG_9;
+  return {
+    'ID do produto': id,
+    'Nome do produto': productName,
+    'Imagem do produto': productImage,
+    'Ingredientes do produto': productIngredients,
+    'Custo do produto': productCost,
+    'Preço do produto': productPrice,
+    'Qtde do produto': productQuantity,
+    'Atualizado por:': userName,
+    'Atualizado em:': timeStamp,
+  };
+};
 
-//   const deleteStatus = await productsModel.deleteIngredient(id);
-//   if (deleteStatus === 0) throw ERROR_MSG_12;
-//   return null;
-// };
+const deleteProduct = async (id, userRole) => {
+  if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
+  if (userRole === 'user') throw ERROR_MSG_9;
+
+  const deleteStatus = await productsModel.deleteProduct(id);
+  if (deleteStatus === 0) throw ERROR_MSG_12;
+  return null;
+};
 
 module.exports = {
   createProduct,
   getAllProducts,
   getProductByName,
   getProductById,
-  // updateIngredient,
-  // deleteIngredient,
+  updateProduct,
+  deleteProduct,
 };
