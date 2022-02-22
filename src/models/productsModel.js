@@ -1,4 +1,4 @@
-// const { ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const connect = require('./connectionDB');
 
 const createProduct = async (bodyData, productCost, productPrice, _id, timeStamp) => {
@@ -32,20 +32,20 @@ const getAllProducts = async () => {
   return query;
 };
 
-// const getIngredientByName = async (name) => {
-//   const conn = await connect();
-//   const query = await conn.collection('products')
-//     .find({ ingredientName: { $regex: name } })
-//     .sort({ ingredientName: 1 })
-//     .toArray();
-//   return query;
-// };
+const getProductByName = async (name) => {
+  const conn = await connect();
+  const query = await conn.collection('products')
+    .find({ productName: { $regex: name } })
+    .sort({ productName: 1 })
+    .toArray();
+  return query;
+};
 
-// const getIngredientById = async (id) => {
-//   const conn = await connect();
-//   const query = await conn.collection('products').findOne({ _id: ObjectId(id) });
-//   return query;
-// };
+const getProductById = async (id) => {
+  const conn = await connect();
+  const query = await conn.collection('products').findOne({ _id: ObjectId(id) });
+  return query;
+};
 
 // const updateIngredient = async (id, _id, bodyData, timeStamp) => {
 //   const conn = await connect();
@@ -77,8 +77,8 @@ const getAllProducts = async () => {
 module.exports = {
   createProduct,
   getAllProducts,
-  // getProductByName,
-  // getProductById,
+  getProductByName,
+  getProductById,
   // updateIngredient,
   // deleteIngredient,
 };

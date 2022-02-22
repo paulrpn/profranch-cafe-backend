@@ -18,27 +18,27 @@ const getAllProducts = async (_req, res) => {
   res.status(200).json(allProducts);
 };
 
-// const getIngredientByName = async (req, res, next) => {
-//   try {
-//     const { name } = req.query;
-//     const result = await productsService.getIngredientByName(name);
+const getProductByName = async (req, res, next) => {
+  try {
+    const { name } = req.query;
+    const result = await productsService.getProductByName(name);
 
-//     return res.status(200).json(result);
-//   } catch (error) {
-//     return next(error);
-//   }
-// };
+    return res.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+};
 
-// const getIngredientById = async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     const ingredient = await productsService.getIngredientById(id);
+const getProductById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await productsService.getProductById(id);
 
-//     return res.status(200).json(ingredient);
-//   } catch (error) {
-//     return next(error);
-//   }
-// };
+    return res.status(200).json(product);
+  } catch (error) {
+    return next(error);
+  }
+};
 
 // const updateIngredient = async (req, res, next) => {
 //   try {
@@ -69,8 +69,8 @@ const getAllProducts = async (_req, res) => {
 module.exports = {
   createProduct,
   getAllProducts,
-  // getProductByName,
-  // getProductById,
+  getProductByName,
+  getProductById,
   // updateIngredient,
   // deleteIngredient,
 };

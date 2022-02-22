@@ -1,6 +1,6 @@
 const ERROR_MSG_1 = {
   status: 400,
-  message: 'Código do ingrediente inválido ou não econtrado!',
+  message: 'Código do item inválido ou não econtrado!',
 };
 
 const ERROR_MSG_2 = {
@@ -50,7 +50,7 @@ const ERROR_MSG_10 = {
 
 const ERROR_MSG_11 = {
   status: 401,
-  message: 'Nenhum ingrediente encontrado para palavra-chave inserida.',
+  message: 'Nenhum item encontrado para palavra-chave inserida.',
 };
 
 const ERROR_MSG_12 = {

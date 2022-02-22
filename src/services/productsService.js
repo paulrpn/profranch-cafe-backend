@@ -1,11 +1,11 @@
-// const { ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const productsModel = require('../models/productsModel');
 const ingredientsModel = require('../models/ingredientsModel');
 
 const {
-  // ERROR_MSG_1,
+  ERROR_MSG_1,
   ERROR_MSG_9,
-  // ERROR_MSG_11,
+  ERROR_MSG_11,
   // ERROR_MSG_12,
 } = require('../utils/errorMessages');
 
@@ -55,18 +55,18 @@ const getAllProducts = async () => {
   return allProducts;
 };
 
-// const getIngredientByName = async (name) => {
-//   const result = await productsModel.getIngredientByName(name);
-//   if (!result) throw ERROR_MSG_11;
-//   return result;
-// };
+const getProductByName = async (name) => {
+  const result = await productsModel.getProductByName(name);
+  if (!result) throw ERROR_MSG_11;
+  return result;
+};
 
-// const getIngredientById = async (id) => {
-//   if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
-//   const ingredient = await productsModel.getIngredientById(id);
-//   if (!ingredient) throw ERROR_MSG_1;
-//   return ingredient;
-// };
+const getProductById = async (id) => {
+  if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
+  const product = await productsModel.getProductById(id);
+  if (!product) throw ERROR_MSG_1;
+  return product;
+};
 
 // const updateIngredient = async (id, userData, bodyData) => {
 //   if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
@@ -110,8 +110,8 @@ const getAllProducts = async () => {
 module.exports = {
   createProduct,
   getAllProducts,
-  // getProductByName,
-  // getProductById,
+  getProductByName,
+  getProductById,
   // updateIngredient,
   // deleteIngredient,
 };
