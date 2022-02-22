@@ -9,12 +9,12 @@ const {
   // ERROR_MSG_12,
 } = require('../utils/errorMessages');
 
-// const {
-//   validateNewName,
-//   validateNewMeasureUnit,
-//   validateNewUnitPrice,
-//   validateNewQuantity,
-// } = require('./validateProductData');
+const {
+  validateNewName,
+  // validateNewImage,
+  validateNewIngredients,
+  validateNewQuantity,
+} = require('./validateProductData');
 
 const createProduct = async (bodyData, userData) => {
   const {
@@ -23,10 +23,10 @@ const createProduct = async (bodyData, userData) => {
   const { _id, userName, userRole } = userData;
   const timeStamp = new Date();
 
-  // validateNewName(productName);
-  // validateNewMeasureUnit(productImage);
-  // validateNewUnitPrice(productIngredients);
-  // validateNewQuantity(productCost);productCost
+  validateNewName(productName);
+  // validateNewImage(productImage);
+  validateNewIngredients(productIngredients);
+  validateNewQuantity(productQuantity);
 
   if (userRole === 'user') throw ERROR_MSG_9;
 
