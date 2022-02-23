@@ -39,16 +39,17 @@
     * `git clone git@github.com:paulrpn/profranch-cafe-backend.git`
     * `cd profranch-cafe-backend`
     * `npm install`
-    * `npm start`
-
-3. Renomeie o arquivo `.env.example` para `.env`, abra o mesmo, preencha as variáveis globais conforme as instruções abaixo e salve as modificações:
-  
+    
+3. Renomeie o arquivo `.env.example` para `.env`, abra o mesmo, preencha as variáveis globais conforme as instruções abaixo e salve as modificações:  
    * Indique o endereço local do seu computador:
       <br>`HOST=localhost`
    * Indique uma porta padrão para o funcionamento do sistema:
       <br>`PORT=3333`
    * Crie sua própria senha para cripitografia do login. Segue sugestão:
       <br>`API_SECRET=HaHaHaHaHaMasEuToRindoAToa`
+      
+4. Iniciar a aplicação no terminal com o comando: `npm start`
+
 --- 
 ## Testes com Insomnia 🖥️
  
