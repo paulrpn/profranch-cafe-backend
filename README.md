@@ -90,30 +90,30 @@ A estrutura do banco de dados `ProFranchCafe` é composta por três tabelas não
 </div><br>
 
 ---
-## Funcionalidades das Rotas
+## Funcionalidades das Rotas 🛰️
 
-### Controle de acesso
-* 
-*
+#### Controle de acesso
+* `POST` `/users` => Cadastra um novo usuário
+* `POST` `/users/login` => Atutentica o login dos usuários com uso de webtoken
 
-### Gerenciamento de Ingredientes
-*
-*
-*
-*
-*
-*
+#### Gerenciamento de Ingredientes
+* `POST` `/ingredient` => Cria um novo ingrediente (ADM)
+* `GET` `/ingredient` => Busca todos os ingredientes (ordem alfabética)
+* `GET` `/ingredient/search` => Busca ingrediente(s) pelo nome através de palavra-chave `tag` (ordem alfabética)
+* `GET` `/ingredient/:id` => Busca um ingrediente através do ID de cadastro
+* `PUT` `/ingredient/:id` => Atualiza um ingrediente através do ID de cadastro (ADM)
+* `DELETE` `/ingredient/:id` => Apaga um ingredient através do ID de cadastro (ADM)
 
-### Gerenciamento de Produtos
-* 
-*
-*
-*
-*
-*
-*
-*
-*
+#### Gerenciamento de Produtos
+* `POST` `/products` => Cria um novo produto (ADM)
+* `GET` `/products` => Busca todos os produtos (ordem alfabética)
+* `GET` `/products/report` => Relatório gerencial com todos os produtos e respectivos preços de custo (ADM)
+* `GET` `/products/salecheck` => Funcionalidade gerencial para verificar no estoque a possinilidade de venda de um produto (`product`: nome do produto | `order`: quantidade) (ADM)
+* `GET` `/products/search` => Busca ingrediente(s) pelo nome através de palavra-chave `tag` (ordem alfabética)
+* `GET` `/products/:id` => Busca um produto através do ID de cadastro
+* `PUT` `/products/:id` => Atualiza um produto através do ID de cadastro (ADM)
+* `PUT` `/products/:id/image` => Adiciona a imagem de um produto através do ID de cadastro (ADM)
+* `DELETE` `/products/:id` => Apaga um produto através do ID de cadastro (ADM)
 
 ---
 ## Contatos 🗣️
