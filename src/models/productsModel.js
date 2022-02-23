@@ -32,6 +32,15 @@ const getAllProducts = async () => {
   return query;
 };
 
+const getProductsCost = async () => {
+  const conn = await connect();
+  const query = await conn.collection('products')
+    .find({}, { projection: { _id: 0, productName: 1, productCost: 1 } })
+    .sort({ productName: 1 })
+    .toArray();
+  return query;
+};
+
 const getProductByName = async (name) => {
   const conn = await connect();
   const query = await conn.collection('products')
@@ -95,6 +104,7 @@ const updateProductImage = async (id, _id, imageURL, timeStamp) => {
 module.exports = {
   createProduct,
   getAllProducts,
+  getProductsCost,
   getProductByName,
   getProductById,
   updateProduct,

@@ -11,6 +11,7 @@ const ingredientsRouter = require('./ingredientsRouter');
 const {
   createProduct,
   getAllProducts,
+  getProductsCost,
   getProductByName,
   getProductById,
   updateProduct,
@@ -30,6 +31,7 @@ app.use('/ingredients', ingredientsRouter);
 
 app.post('/products', validateJWT, createProduct);
 app.get('/products', validateJWT, getAllProducts);
+app.get('/products/report', validateJWT, getProductsCost);
 app.get('/products/search', validateJWT, getProductByName);
 app.get('/products/:id', validateJWT, getProductById);
 app.put('/products/:id', validateJWT, updateProduct);

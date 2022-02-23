@@ -59,6 +59,12 @@ const getAllProducts = async () => {
   return allProducts;
 };
 
+const getProductsCost = async (userRole) => {
+  if (userRole === 'user') throw ERROR_MSG_9;
+  const allProducts = await productsModel.getProductsCost();
+  return allProducts;
+};
+
 const getProductByName = async (name) => {
   const result = await productsModel.getProductByName(name);
   if (!result) throw ERROR_MSG_11;
@@ -126,7 +132,7 @@ const updateProductImage = async (id, filename, userData) => {
     productName, productIngredients, productCost, productPrice, productQuantity,
   } = product;
 
-  const imageURL = `${'localhost:3333/src/uploads/'}${filename}`;
+  const imageURL = `${'localhgetAllProductsost:3333/src/uploads/'}${filename}`;
 
   if (userRole === 'user') throw ERROR_MSG_9;
   const updateStatus = await productsModel.updateProductImage(id, _id, imageURL, timeStamp);
@@ -149,6 +155,7 @@ const updateProductImage = async (id, filename, userData) => {
 module.exports = {
   createProduct,
   getAllProducts,
+  getProductsCost,
   getProductByName,
   getProductById,
   updateProduct,

@@ -19,6 +19,17 @@ const getAllProducts = async (_req, res) => {
   res.status(200).json(allProducts);
 };
 
+const getProductsCost = async (req, res, next) => {
+  try {
+    const { userRole } = req.user;
+    const allProducts = await productsService.getProductsCost(userRole);
+
+    return res.status(200).json(allProducts);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const getProductByName = async (req, res, next) => {
   try {
     const { name } = req.query;
@@ -85,6 +96,7 @@ const updateProductImage = async (req, res, next) => {
 module.exports = {
   createProduct,
   getAllProducts,
+  getProductsCost,
   getProductByName,
   getProductById,
   updateProduct,
