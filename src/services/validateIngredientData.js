@@ -11,7 +11,7 @@ const validateNewMeasureUnit = (measureUnit) => {
   if (!measureUnit || typeof (measureUnit) !== 'string') {
     throw ERROR_MSG_6;
   }
-  if (measureUnit !== 'litro' && measureUnit !== 'kilo' && measureUnit !== 'unidade') {
+  if (measureUnit !== 'litro' && measureUnit !== 'quilo' && measureUnit !== 'unidade') {
     throw ERROR_MSG_10;
   }
   return true;

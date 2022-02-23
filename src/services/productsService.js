@@ -117,12 +117,11 @@ const updateProduct = async (id, userData, bodyData) => {
 const updateProductImage = async (id, filename, userData) => {
   const { _id, userName, userRole } = userData;
   const timeStamp = new Date();
+  const imageURL = `${'localhost:3333/src/uploads/'}${filename}`;
   const product = await productsModel.getProductById(id);
   const {
     productName, productIngredients, productCost, productPrice, productQuantity,
   } = product;
-
-  const imageURL = `${'localhgetAllProductsost:3333/src/uploads/'}${filename}`;
 
   if (userRole === 'user') throw ERROR_MSG_9;
   const updateStatus = await productsModel.updateProductImage(id, _id, imageURL, timeStamp);
