@@ -35,7 +35,7 @@
 
 1. Copie o link ssh: ``` git@github.com:paulrpn/profranch-cafe-backend.git ```
 
-2. Abra um terminal no seu computador e utilize os comandos a baixo na ordem que são apresentados:
+2. Abra um terminal no seu computador e utilize os comandos abaixo na ordem que são apresentados:
     * `git clone git@github.com:paulrpn/profranch-cafe-backend.git`
     * `cd profranch-cafe-backend`
     * `npm install`
@@ -108,7 +108,7 @@ A estrutura do banco de dados `ProFranchCafe` é composta por três tabelas não
 * `POST` `/products` => Cria um novo produto (ADM)
 * `GET` `/products` => Busca todos os produtos (ordem alfabética)
 * `GET` `/products/report` => Relatório gerencial com todos os produtos e respectivos preços de custo (ADM)
-* `GET` `/products/salecheck` => Funcionalidade gerencial para verificar no estoque a possinilidade de venda de um produto (`product`: nome do produto | `order`: quantidade) (ADM)
+* `GET` `/products/salecheck` => Funcionalidade gerencial para verificar no estoque a possibilidade de venda de um produto (`product`: nome do produto | `order`: quantidade) (ADM)
 * `GET` `/products/search` => Busca ingrediente(s) pelo nome através de palavra-chave `tag` (ordem alfabética)
 * `GET` `/products/:id` => Busca um produto através do ID de cadastro
 * `PUT` `/products/:id` => Atualiza um produto através do ID de cadastro (ADM)
