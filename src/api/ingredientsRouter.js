@@ -6,7 +6,7 @@ const validateJWT = require('../middlewares/validateJWT');
 const {
   createIngredient,
   getAllIngredients,
-  getIngredientByName,
+  getIngredientByTag,
   getIngredientById,
   updateIngredient,
   deleteIngredient,
@@ -14,7 +14,7 @@ const {
 
 ingredientsRouter.post('/', validateJWT, createIngredient);
 ingredientsRouter.get('/', validateJWT, getAllIngredients);
-ingredientsRouter.get('/search', validateJWT, getIngredientByName);
+ingredientsRouter.get('/search', validateJWT, getIngredientByTag);
 ingredientsRouter.get('/:id', validateJWT, getIngredientById);
 ingredientsRouter.put('/:id', validateJWT, updateIngredient);
 ingredientsRouter.delete('/:id', validateJWT, deleteIngredient);

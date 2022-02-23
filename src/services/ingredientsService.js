@@ -48,8 +48,8 @@ const getAllIngredients = async () => {
   return allIngredients;
 };
 
-const getIngredientByName = async (name) => {
-  const result = await ingredientsModel.getIngredientByName(name);
+const getIngredientByTag = async (tag) => {
+  const result = await ingredientsModel.getIngredientByTag(tag);
   if (!result) throw ERROR_MSG_11;
   return result;
 };
@@ -103,7 +103,7 @@ const deleteIngredient = async (id, userRole) => {
 module.exports = {
   createIngredient,
   getAllIngredients,
-  getIngredientByName,
+  getIngredientByTag,
   getIngredientById,
   updateIngredient,
   deleteIngredient,

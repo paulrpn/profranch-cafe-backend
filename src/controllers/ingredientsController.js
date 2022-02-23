@@ -18,10 +18,10 @@ const getAllIngredients = async (_req, res) => {
   res.status(200).json(allIngredients);
 };
 
-const getIngredientByName = async (req, res, next) => {
+const getIngredientByTag = async (req, res, next) => {
   try {
-    const { name } = req.query;
-    const result = await ingredientsService.getIngredientByName(name);
+    const { tag } = req.query;
+    const result = await ingredientsService.getIngredientByTag(tag);
 
     return res.status(200).json(result);
   } catch (error) {
@@ -69,7 +69,7 @@ const deleteIngredient = async (req, res, next) => {
 module.exports = {
   createIngredient,
   getAllIngredients,
-  getIngredientByName,
+  getIngredientByTag,
   getIngredientById,
   updateIngredient,
   deleteIngredient,

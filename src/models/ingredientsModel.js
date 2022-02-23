@@ -31,10 +31,10 @@ const getAllIngredients = async () => {
   return query;
 };
 
-const getIngredientByName = async (name) => {
+const getIngredientByTag = async (tag) => {
   const conn = await connect();
   const query = await conn.collection('ingredients')
-    .find({ ingredientName: { $regex: name } })
+    .find({ ingredientName: { $regex: tag } })
     .sort({ ingredientName: 1 })
     .toArray();
   return query;
@@ -127,7 +127,7 @@ const checkIngredients = async (productIngredients, order) => {
 module.exports = {
   createIngredient,
   getAllIngredients,
-  getIngredientByName,
+  getIngredientByTag,
   getIngredientById,
   updateIngredient,
   deleteIngredient,

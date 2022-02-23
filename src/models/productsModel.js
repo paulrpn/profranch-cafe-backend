@@ -44,12 +44,6 @@ const getProductByName = async (product) => {
   return query;
 };
 
-// const checkProductSale = async (product) => {
-//   const conn = await connect();
-//   const query = await conn.collection('products').findOne({ productName: product });
-//   return query;
-// };
-
 const getProductByTag = async (tag) => {
   const conn = await connect();
   const query = await conn.collection('products')
