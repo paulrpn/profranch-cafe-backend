@@ -54,8 +54,8 @@
  
 Para utilizar os testes já configurados para a ferramenta [Insomnia](https://insomnia.rest/) basta abrí-la, clicar no botão `Create` (canto superior direito), no menu `IMPORT FROM` acessar a opção `+ File` e selecionar o arquivo `insomnia-tests.json` que já está na raiz da estrutura de pastas.
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/84095521/155300053-692e5b48-3ca0-4c5d-abd5-80ebf23fdc2b.png" alt="insomnia-option" height="430" width="200"> 
-    <img src=https://user-images.githubusercontent.com/84095521/155300443-626a2512-5fb9-438a-b28d-c7ccd916edf8.png alt="insomnia-collection" height="430" width="700">
+    <img src="https://user-images.githubusercontent.com/84095521/155300053-692e5b48-3ca0-4c5d-abd5-80ebf23fdc2b.png" alt="insomnia-option" height="400" width="180"> 
+    <img src=https://user-images.githubusercontent.com/84095521/155300443-626a2512-5fb9-438a-b28d-c7ccd916edf8.png alt="insomnia-collection" height="400" width="650">
 </div>
 
 ---
