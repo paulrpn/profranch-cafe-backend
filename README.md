@@ -54,8 +54,8 @@
  
 Para utilizar os testes já configurados para a ferramenta [Insomnia](https://insomnia.rest/) basta abrí-la, clicar no botão `Create` (canto superior direito), no menu `IMPORT FROM` acessar a opção `+ File` e selecionar o arquivo `insomnia-tests.json` que já está na raiz da estrutura de pastas.
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/84095521/155300053-692e5b48-3ca0-4c5d-abd5-80ebf23fdc2b.png" alt="insomnia-option" height="400" width="180"> 
-    <img src=https://user-images.githubusercontent.com/84095521/155300443-626a2512-5fb9-438a-b28d-c7ccd916edf8.png alt="insomnia-collection" height="400" width="650">
+    <img src="https://user-images.githubusercontent.com/84095521/155300053-692e5b48-3ca0-4c5d-abd5-80ebf23fdc2b.png" alt="insomnia-option" height="350" width="150"> 
+    <img src=https://user-images.githubusercontent.com/84095521/155300443-626a2512-5fb9-438a-b28d-c7ccd916edf8.png alt="insomnia-collection" height="350" width="600">
 </div>
 
 ---
@@ -73,20 +73,20 @@ A estrutura do banco de dados `ProFranchCafe` é composta por três tabelas não
 
 1) `USERS` => Cadastro e gerenciamento de usuários. Existem 2 níveis de acesso: `user`, apenas para consultas públicas e `admin`, para funções de gerenciamento e consultas gerenciais. Seguem exemplos de estrutura máxima para documentos desta coleção:
 <div align="center">
-    <img src=https://user-images.githubusercontent.com/84095521/155309148-df2a1b2b-3a64-4edf-9019-750dc4862b32.png alt="document-user" height="200" width="400"> 
-    <img src=https://user-images.githubusercontent.com/84095521/155309166-d14aaabd-e387-47d4-ad0c-96af749de2fb.png alt="document-admin" height="200" width="400">
+    <img src=https://user-images.githubusercontent.com/84095521/155309148-df2a1b2b-3a64-4edf-9019-750dc4862b32.png alt="document-user" height="150" width="350"> 
+    <img src=https://user-images.githubusercontent.com/84095521/155309166-d14aaabd-e387-47d4-ad0c-96af749de2fb.png alt="document-admin" height="150" width="350">
 </div><br>
 
 2) `INGREDIENTS` => Cadastro, manipulação e consultas de ingredientes. Seguem exemplos de estrutura máxima para documentos desta coleção:
 <div align="center">
-    <img src=https://user-images.githubusercontent.com/84095521/155312241-743be4f5-99f0-4991-a20b-3e5a88894b5c.png alt="document-ovo" height="380" width="370">
-    <img src=https://user-images.githubusercontent.com/84095521/155312276-490f4ed1-a9ce-4e0c-b95a-a725393906a9.png alt="document-leite" height="380" width="370">
+    <img src=https://user-images.githubusercontent.com/84095521/155312241-743be4f5-99f0-4991-a20b-3e5a88894b5c.png alt="document-ovo" height="330" width="320">
+    <img src=https://user-images.githubusercontent.com/84095521/155312276-490f4ed1-a9ce-4e0c-b95a-a725393906a9.png alt="document-leite" height="330" width="320">
 </div><br>
 
 3) `PRODUCTS` => Cadastro, manipulação e consultas de produtos. Seguem exemplos de estrutura máxima para um documentos desta coleção:
 <div align="center">
-    <img src=https://user-images.githubusercontent.com/84095521/155315116-9e48ef4b-b7ce-449b-b467-6b379effb073.png alt="document-cookie" height="500" width="410">
-    <img src=https://user-images.githubusercontent.com/84095521/155319450-cad567dc-5936-4db1-b0a2-653d736dbf21.png alt="document-pancake" height="500" width="410">
+    <img src=https://user-images.githubusercontent.com/84095521/155315116-9e48ef4b-b7ce-449b-b467-6b379effb073.png alt="document-cookie" height="450" width="360">
+    <img src=https://user-images.githubusercontent.com/84095521/155319450-cad567dc-5936-4db1-b0a2-653d736dbf21.png alt="document-pancake" height="450" width="360">
 </div><br>
 
 ---
