@@ -3,14 +3,11 @@ const connect = require('./connectionDB');
 
 const createProduct = async (bodyData, productCost, productPrice, _id, timeStamp) => {
   const conn = await connect();
-  const {
-    productName, productImage, productIngredients, productQuantity,
-  } = bodyData;
+  const { productName, productIngredients, productQuantity } = bodyData;
 
   const { insertedId } = await conn.collection('products').insertOne(
     {
       productName,
-      productImage,
       productIngredients,
       productCost,
       productPrice,
@@ -41,10 +38,22 @@ const getProductsCost = async () => {
   return query;
 };
 
-const getProductByName = async (name) => {
+const getProductByName = async (product) => {
+  const conn = await connect();
+  const query = await conn.collection('products').findOne({ productName: product });
+  return query;
+};
+
+// const checkProductSale = async (product) => {
+//   const conn = await connect();
+//   const query = await conn.collection('products').findOne({ productName: product });
+//   return query;
+// };
+
+const getProductByTag = async (tag) => {
   const conn = await connect();
   const query = await conn.collection('products')
-    .find({ productName: { $regex: name } })
+    .find({ productName: { $regex: tag } })
     .sort({ productName: 1 })
     .toArray();
   return query;
@@ -58,9 +67,7 @@ const getProductById = async (id) => {
 
 const updateProduct = async (id, _id, bodyData, productCost, productPrice, timeStamp) => {
   const conn = await connect();
-  const {
-    productName, productImage, productIngredients, productQuantity,
-  } = bodyData;
+  const { productName, productIngredients, productQuantity } = bodyData;
 
   const { modifiedCount } = await conn.collection('products').updateOne(
     { _id: ObjectId(id) },
@@ -68,7 +75,6 @@ const updateProduct = async (id, _id, bodyData, productCost, productPrice, timeS
       $set:
         {
           productName,
-          productImage,
           productIngredients,
           productCost,
           productPrice,
@@ -82,14 +88,6 @@ const updateProduct = async (id, _id, bodyData, productCost, productPrice, timeS
   return modifiedCount;
 };
 
-const deleteProduct = async (id) => {
-  const conn = await connect();
-
-  const { deletedCount } = await conn.collection('products')
-    .deleteOne({ _id: ObjectId(id) });
-  return deletedCount;
-};
-
 const updateProductImage = async (id, _id, imageURL, timeStamp) => {
   const conn = await connect();
 
@@ -101,13 +99,22 @@ const updateProductImage = async (id, _id, imageURL, timeStamp) => {
   return modifiedCount;
 };
 
+const deleteProduct = async (id) => {
+  const conn = await connect();
+
+  const { deletedCount } = await conn.collection('products')
+    .deleteOne({ _id: ObjectId(id) });
+  return deletedCount;
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductsCost,
   getProductByName,
+  getProductByTag,
   getProductById,
   updateProduct,
-  deleteProduct,
   updateProductImage,
+  deleteProduct,
 };

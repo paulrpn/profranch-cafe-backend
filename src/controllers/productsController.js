@@ -30,10 +30,22 @@ const getProductsCost = async (req, res, next) => {
   }
 };
 
-const getProductByName = async (req, res, next) => {
+const checkProductForSale = async (req, res, next) => {
   try {
-    const { name } = req.query;
-    const result = await productsService.getProductByName(name);
+    const { product, order } = req.query;
+    const { userRole } = req.user;
+    await productsService.checkProductForSale(product, order, userRole);
+
+    return res.status(200).send('Este produto pode ser vendido na quantidade informada!');
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const getProductByTag = async (req, res, next) => {
+  try {
+    const { tag } = req.query;
+    const result = await productsService.getProductByTag(tag);
 
     return res.status(200).json(result);
   } catch (error) {
@@ -66,19 +78,6 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
-const deleteProduct = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const { userRole } = req.user;
-
-    await productsService.deleteProduct(id, userRole);
-
-    return res.status(200).send('Produto excluído com sucesso!');
-  } catch (error) {
-    return next(error);
-  }
-};
-
 const updateProductImage = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -93,13 +92,27 @@ const updateProductImage = async (req, res, next) => {
   }
 };
 
+const deleteProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { userRole } = req.user;
+
+    await productsService.deleteProduct(id, userRole);
+
+    return res.status(200).send('Produto excluído com sucesso!');
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductsCost,
-  getProductByName,
+  checkProductForSale,
+  getProductByTag,
   getProductById,
   updateProduct,
-  deleteProduct,
   updateProductImage,
+  deleteProduct,
 };

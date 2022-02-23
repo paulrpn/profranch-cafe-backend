@@ -11,24 +11,19 @@ const {
 
 const {
   validateNewName,
-  // validateNewImage,
   validateNewIngredients,
   validateNewQuantity,
   validateUpdateName,
-  // validateUpdateImage,
   validateUpdateIngredients,
   validateUpdateQuantity,
 } = require('./validateProductData');
 
 const createProduct = async (bodyData, userData) => {
-  const {
-    productName, productImage, productIngredients, productQuantity,
-  } = bodyData;
+  const { productName, productIngredients, productQuantity } = bodyData;
   const { _id, userName, userRole } = userData;
   const timeStamp = new Date();
 
   validateNewName(productName);
-  // validateNewImage(productImage);
   validateNewIngredients(productIngredients);
   validateNewQuantity(productQuantity);
 
@@ -44,7 +39,6 @@ const createProduct = async (bodyData, userData) => {
   return {
     'ID do produto': newProductId,
     'Nome do produto': productName,
-    'Imagem do produto': productImage,
     'Ingredientes do produto': productIngredients,
     'Custo do produto': productCost,
     'Preço do produto': productPrice,
@@ -65,8 +59,17 @@ const getProductsCost = async (userRole) => {
   return allProducts;
 };
 
-const getProductByName = async (name) => {
-  const result = await productsModel.getProductByName(name);
+const checkProductForSale = async (product, order, userRole) => {
+  if (userRole === 'user') throw ERROR_MSG_9;
+  const { productIngredients } = await productsModel.getProductByName(product);
+
+  const checkOrder = await ingredientsModel
+    .checkIngredients(productIngredients, order);
+  return checkOrder;
+};
+
+const getProductByTag = async (tag) => {
+  const result = await productsModel.getProductByTag(tag);
   if (!result) throw ERROR_MSG_11;
   return result;
 };
@@ -80,14 +83,11 @@ const getProductById = async (id) => {
 
 const updateProduct = async (id, userData, bodyData) => {
   if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
-  const {
-    productName, productImage, productIngredients, productQuantity,
-  } = bodyData;
+  const { productName, productIngredients, productQuantity } = bodyData;
   const { _id, userName, userRole } = userData;
   const timeStamp = new Date();
 
   validateUpdateName(productName);
-  // validateUpdateImage(productImage);
   validateUpdateIngredients(productIngredients);
   validateUpdateQuantity(productQuantity);
 
@@ -105,7 +105,6 @@ const updateProduct = async (id, userData, bodyData) => {
   return {
     'ID do produto': id,
     'Nome do produto': productName,
-    'Imagem do produto': productImage,
     'Ingredientes do produto': productIngredients,
     'Custo do produto': productCost,
     'Preço do produto': productPrice,
@@ -113,15 +112,6 @@ const updateProduct = async (id, userData, bodyData) => {
     'Atualizado por:': userName,
     'Atualizado em:': timeStamp,
   };
-};
-
-const deleteProduct = async (id, userRole) => {
-  if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
-  if (userRole === 'user') throw ERROR_MSG_9;
-
-  const deleteStatus = await productsModel.deleteProduct(id);
-  if (deleteStatus === 0) throw ERROR_MSG_12;
-  return null;
 };
 
 const updateProductImage = async (id, filename, userData) => {
@@ -152,13 +142,23 @@ const updateProductImage = async (id, filename, userData) => {
   };
 };
 
+const deleteProduct = async (id, userRole) => {
+  if (!ObjectId.isValid(id)) throw ERROR_MSG_1;
+  if (userRole === 'user') throw ERROR_MSG_9;
+
+  const deleteStatus = await productsModel.deleteProduct(id);
+  if (deleteStatus === 0) throw ERROR_MSG_12;
+  return null;
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductsCost,
-  getProductByName,
+  checkProductForSale,
+  getProductByTag,
   getProductById,
   updateProduct,
-  deleteProduct,
   updateProductImage,
+  deleteProduct,
 };

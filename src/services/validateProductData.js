@@ -7,13 +7,6 @@ const validateNewName = (productName) => {
   return true;
 };
 
-// const validateNewImage = (productImage) => {
-//   if (!productImage || typeof (productImage) !== 'string') {
-//     throw ERROR_MSG_6;
-//   }
-//   return true;
-// };
-
 const validateNewIngredients = (productIngredients) => {
   if (!productIngredients || typeof (productIngredients) !== 'object') {
     throw ERROR_MSG_6;
@@ -35,13 +28,6 @@ const validateUpdateName = (productName) => {
   return true;
 };
 
-// const validateUpdateImage = (productImage) => {
-//   if (!productImage ||typeof (productImage) !== 'string') {
-//     throw ERROR_MSG_6;
-//   }
-//   return true;
-// };
-
 const validateUpdateIngredients = (productIngredients) => {
   if (!productIngredients || typeof (productIngredients) !== 'object') {
     throw ERROR_MSG_6;
@@ -58,11 +44,9 @@ const validateUpdateQuantity = (productQuantity) => {
 
 module.exports = {
   validateNewName,
-  // validateNewImage,
   validateNewIngredients,
   validateNewQuantity,
   validateUpdateName,
-  // validateUpdateImage,
   validateUpdateIngredients,
   validateUpdateQuantity,
 };

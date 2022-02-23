@@ -1,4 +1,5 @@
 const { ObjectId } = require('mongodb');
+const { ERROR_MSG_13 } = require('../utils/errorMessages');
 const connect = require('./connectionDB');
 
 const createIngredient = async (bodyData, _id, timeStamp) => {
@@ -78,17 +79,17 @@ const consumeIngredients = async (productIngredients, productQuantity, _id, time
   let decrementValue = 0;
 
   for (let index = 0; index < productIngredients.length; index += 1) {
-    const { ingredientName, quantity } = productIngredients[index];
+    const { ingredientName, ingredientQuantity } = productIngredients[index];
 
-    /* NOTA: Consulta o preço unitário de cada ingrediente e multiplica pela quantidade
-    necessária para produção do produto */
+    /* NOTA: Consulta o preço unitário de cada ingrediente e multiplica
+    pela quantidade necessária para produção do produto */
     // eslint-disable-next-line no-await-in-loop
     const { unitPrice } = await conn.collection('ingredients').findOne({ ingredientName });
-    sumPrices += (quantity * unitPrice);
-    decrementValue = parseFloat((quantity * productQuantity).toFixed(2), 10);
+    sumPrices += (ingredientQuantity * unitPrice);
+    decrementValue = parseFloat((ingredientQuantity * productQuantity).toFixed(2), 10);
 
-    /* NOTA: Desconta a qtde de ingredientes necessários para fabricar a qtde de produtos
-    informada */
+    /* NOTA: Desconta a qtde de ingredientes necessários para fabricar
+    a qtde de produtos informada */
     // eslint-disable-next-line no-await-in-loop
     await conn.collection('ingredients')
       .updateOne(
@@ -104,6 +105,25 @@ const consumeIngredients = async (productIngredients, productQuantity, _id, time
   return productCost;
 };
 
+const checkIngredients = async (productIngredients, order) => {
+  const conn = await connect();
+  let decrementValue = 0;
+
+  for (let index = 0; index < productIngredients.length; index += 1) {
+    const { ingredientName, ingredientQuantity } = productIngredients[index];
+
+    /* NOTA: Checa se é possível decrementar os ingredients necessários
+    para atender o order sem zerar o estoque */
+    // eslint-disable-next-line no-await-in-loop
+    const { quantity } = await conn.collection('ingredients').findOne({ ingredientName });
+    decrementValue = parseFloat((ingredientQuantity * order).toFixed(2), 10);
+
+    if ((quantity - decrementValue) <= 0) throw ERROR_MSG_13;
+  }
+
+  return true;
+};
+
 module.exports = {
   createIngredient,
   getAllIngredients,
@@ -112,4 +132,5 @@ module.exports = {
   updateIngredient,
   deleteIngredient,
   consumeIngredients,
+  checkIngredients,
 };

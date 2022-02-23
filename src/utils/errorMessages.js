@@ -58,6 +58,11 @@ const ERROR_MSG_12 = {
   message: 'Nenhum item atualizado/excluído.',
 };
 
+const ERROR_MSG_13 = {
+  status: 400,
+  message: 'Não há ingredientes suficientes para atender este pedido. Tente uma quantidade menor ou aumente os recursos em estoque.',
+};
+
 module.exports = {
   ERROR_MSG_1,
   ERROR_MSG_2,
@@ -71,4 +76,5 @@ module.exports = {
   ERROR_MSG_10,
   ERROR_MSG_11,
   ERROR_MSG_12,
+  ERROR_MSG_13,
 };
