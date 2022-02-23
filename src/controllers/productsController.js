@@ -86,7 +86,7 @@ const updateProductImage = async (req, res, next) => {
 
     const updatedProduct = await productsService.updateProductImage(id, filename, userData);
 
-    return res.status(200).json({ 'Imagem inserida com sucesso no produto': updatedProduct });
+    return res.status(201).json({ 'Imagem inserida com sucesso no produto': updatedProduct });
   } catch (error) {
     return next(error);
   }

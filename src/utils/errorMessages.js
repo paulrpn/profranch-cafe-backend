@@ -24,7 +24,7 @@ const ERROR_MSG_5 = {
 };
 
 const ERROR_MSG_6 = {
-  status: 401,
+  status: 400,
   message: 'Todos os campos devem ser informados corretamente! Tente novamente.',
 };
 
@@ -44,22 +44,22 @@ const ERROR_MSG_9 = {
 };
 
 const ERROR_MSG_10 = {
-  status: 401,
+  status: 400,
   message: 'Escolha entre as opções válidas: litro, kilo ou unidade.',
 };
 
 const ERROR_MSG_11 = {
-  status: 401,
+  status: 406,
   message: 'Nenhum item encontrado para palavra-chave inserida.',
 };
 
 const ERROR_MSG_12 = {
-  status: 400,
+  status: 406,
   message: 'Nenhum item atualizado/excluído.',
 };
 
 const ERROR_MSG_13 = {
-  status: 400,
+  status: 406,
   message: 'Não há ingredientes suficientes para atender este pedido. Tente uma quantidade menor ou aumente os recursos em estoque.',
 };
 
