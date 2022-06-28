@@ -125,4 +125,4 @@ _Fico à disposição para quaisquer esclarecimentos que se fizerem necessários
 
 😁👍🏻
     
-[Linkedin](https://www.linkedin.com/in/paulo-rpn/) • [Github](https://github.com/paulrpn) • 📭 paulrpn@live.com 
+[Linkedin](https://www.linkedin.com/in/paulo-rpn/) • [Github](https://github.com/paulrpn) • 📭 paulnogueira.jobs@gmail.com 
